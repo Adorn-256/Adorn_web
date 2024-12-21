@@ -3,49 +3,58 @@
 import { Card } from "@/components/ui/card";
 import { Wifi, Monitor, Shield, Camera, Code, Database, Globe, ShoppingCart } from "lucide-react";
 
-const services = [
+// Define the type for each service
+type Service = {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+};
+
+// Array of services with type annotation
+const services: Service[] = [
   {
     icon: <Code />,
     title: "Custom Software Development",
-    description: "Tailored software solutions to solve your business challenges"
+    description: "Tailored software solutions to solve your business challenges",
   },
   {
     icon: <Globe />,
     title: "Website Development",
-    description: "Professional, responsive websites that drive results"
+    description: "Professional, responsive websites that drive results",
   },
   {
     icon: <Shield />,
     title: "IT Consultancy",
-    description: "Expert guidance for your technology infrastructure"
+    description: "Expert guidance for your technology infrastructure",
   },
   {
     icon: <Monitor />,
     title: "Digital Marketing",
-    description: "Strategic marketing solutions to grow your online presence"
+    description: "Strategic marketing solutions to grow your online presence",
   },
   {
     icon: <Database />,
     title: "Cloud Solutions",
-    description: "Scalable cloud services for your business needs"
+    description: "Scalable cloud services for your business needs",
   },
   {
     icon: <ShoppingCart />,
     title: "E-Commerce Solutions",
-    description: "Custom online stores that drive sales"
+    description: "Custom online stores that drive sales",
   },
   {
     icon: <Camera />,
     title: "CCTV Installation",
-    description: "Professional security camera systems"
+    description: "Professional security camera systems",
   },
   {
     icon: <Wifi />,
     title: "Network Installation",
-    description: "Reliable networking infrastructure setup"
-  }
+    description: "Reliable networking infrastructure setup",
+  },
 ];
 
+// Main Services component
 export function Services() {
   return (
     <section id="services" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -61,7 +70,8 @@ export function Services() {
   );
 }
 
-function ServiceCard({ icon, title, description }) {
+// ServiceCard component with type definition
+function ServiceCard({ icon, title, description }: Service) {
   return (
     <Card className="p-6 hover:shadow-lg transition-shadow dark:bg-gray-800">
       <div className="flex flex-col items-center text-center">
