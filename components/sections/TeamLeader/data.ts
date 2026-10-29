@@ -1,7 +1,7 @@
 export const leaderData = {
   name: "Mugera Swabri",
   role: "Founder & CEO",
-  image: "https://i.ibb.co/J3yzQsf/2023-10-15-16-20-IMG-5915.jpg",
+  image: "https://i.ibb.co/SXQW6RT5/Untitled-4.png",
   introduction: [
     "With over 15 years of experience in the technology sector, I've had the privilege of witnessing and contributing to the digital transformation of businesses across Uganda.",
     "At Adorn Soft Tech, we believe in the transformative power of technology. Our journey began with a vision to bridge the digital divide in Fort Portal and beyond.",
