@@ -1,8 +1,16 @@
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
+const socials = [
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+];
+
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white py-12 relative overflow-hidden">
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-[#00a3ff] via-[#4cff00] to-[#00a3ff]" />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -14,10 +22,10 @@ export function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#about" className="text-gray-400 hover:text-white">About Us</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-white">Services</a></li>
-              <li><a href="#portfolio" className="text-gray-400 hover:text-white">Portfolio</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-white">Contact</a></li>
+              <li><a href="#about" className="text-gray-400 hover:text-[#4cff00] hover:pl-2 transition-all duration-300 inline-block">About Us</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-[#4cff00] hover:pl-2 transition-all duration-300 inline-block">Services</a></li>
+              <li><a href="#portfolio" className="text-gray-400 hover:text-[#4cff00] hover:pl-2 transition-all duration-300 inline-block">Portfolio</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-[#4cff00] hover:pl-2 transition-all duration-300 inline-block">Contact</a></li>
             </ul>
           </div>
           <div>
@@ -32,18 +40,16 @@ export function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Instagram size={20} />
-              </a>
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="text-gray-400 hover:text-[#00a3ff] hover:-translate-y-1 transition-all duration-300"
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

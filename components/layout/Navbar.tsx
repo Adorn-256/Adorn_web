@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const navLinks = [
@@ -36,12 +36,16 @@ export function Navbar() {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background border-b' : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-background/80 backdrop-blur-lg border-b shadow-sm'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="relative w-32 h-8">
+          <Link href="/" className="relative w-32 h-8 hover:scale-105 transition-transform">
             <Image
               src="https://i.ibb.co/4ZgmKF5/Adon.png"
               alt="AdornSoft"
@@ -58,7 +62,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className={`transition-colors duration-300 ${
+                className={`nav-underline transition-colors duration-300 ${
                   isScrolled ? 'text-foreground hover:text-[#00a3ff]' : 'text-white hover:text-[#4cff00]'
                 }`}
               >
@@ -73,28 +77,44 @@ export function Navbar() {
             <ThemeToggle />
             <button
               className="ml-4"
+              aria-label="Toggle menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <Menu className={isScrolled ? 'text-foreground' : 'text-white'} />
+              {isMobileMenuOpen ? (
+                <X className={isScrolled ? 'text-foreground' : 'text-white'} />
+              ) : (
+                <Menu className={isScrolled ? 'text-foreground' : 'text-white'} />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-background border rounded-b-lg">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
-                className="block px-4 py-2 text-foreground hover:bg-muted"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden bg-background/95 backdrop-blur-lg border rounded-b-lg"
+            >
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
+                  onClick={(e) => scrollToSection(e, link.href)}
+                  className="block px-4 py-3 text-foreground hover:bg-muted hover:pl-6 transition-all"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

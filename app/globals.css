@@ -24,6 +24,8 @@
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
+    --brand-blue: #00a3ff;
+    --brand-green: #4cff00;
   }
 
   .dark {
@@ -53,7 +55,168 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: rgba(0, 163, 255, 0.3);
+  }
+}
+
+@layer utilities {
+  /* Animated brand gradient text */
+  .text-gradient-brand {
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-green), var(--brand-blue));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-x 6s ease infinite;
+  }
+
+  /* Glow pulse for CTAs */
+  .glow-pulse {
+    animation: glow-pulse 2.4s ease-in-out infinite;
+  }
+
+  /* Floating elements */
+  .float-slow {
+    animation: float 7s ease-in-out infinite;
+  }
+  .float-slower {
+    animation: float 11s ease-in-out infinite;
+  }
+
+  /* Infinite horizontal marquee */
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  /* Shimmer sweep on hover */
+  .hover-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .hover-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+  .hover-shine:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Underline grow effect for nav links */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-green));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .nav-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Soft brand glow on hover */
+  .hover-glow {
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 0 1px rgba(0, 163, 255, 0.25), 0 12px 40px -8px rgba(0, 163, 255, 0.35);
+    transform: translateY(-4px);
+  }
+
+  /* Decorative dotted grid background */
+  .bg-dots {
+    background-image: radial-gradient(rgba(0, 163, 255, 0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  /* Bouncing scroll hint */
+  .animate-scroll-hint {
+    animation: scroll-hint 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 255, 0, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 24px 6px rgba(76, 255, 0, 0.25);
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-brand,
+  .glow-pulse,
+  .float-slow,
+  .float-slower,
+  .animate-marquee,
+  .animate-scroll-hint {
+    animation: none;
   }
 }
