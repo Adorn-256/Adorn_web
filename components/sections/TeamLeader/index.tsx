@@ -21,12 +21,12 @@ export function TeamLeader() {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-16"
         >
-          Leadership
+          Leader<span className="text-gradient-brand">ship</span>
         </motion.h2>
 
         <div className="space-y-8">
           {/* Leader Introduction */}
-          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm">
+          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm hover-glow">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <LeaderImage 
                 src={leaderData.image}
@@ -56,7 +56,7 @@ export function TeamLeader() {
           </Card>
 
           {/* Achievements */}
-          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm">
+          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm hover-glow">
             <motion.h4 
               className="text-xl font-semibold mb-6 text-foreground"
               initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ export function TeamLeader() {
           </Card>
 
           {/* Experience Timeline */}
-          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm">
+          <Card className="p-8 dark:bg-gray-800/50 backdrop-blur-sm hover-glow">
             <motion.h4 
               className="text-xl font-semibold mb-6 text-foreground"
               initial={{ opacity: 0, y: 20 }}
