@@ -1,0 +1,11 @@
+# Robots.txt for Adorn Soft Technologies
+# https://adornsoft.tech
+
+User-agent: *
+Allow: /
+
+# Host
+Host: https://adornsoft.tech
+
+# Sitemaps
+Sitemap: https://adornsoft.tech/sitemap.xml

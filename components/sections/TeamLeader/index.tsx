@@ -21,7 +21,7 @@ export function TeamLeader() {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-16"
         >
-          Leader<span className="text-gradient-brand">ship</span>
+          Our Team <span className="text-gradient-brand">Leader</span>
         </motion.h2>
 
         <div className="space-y-8">
